@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yurty McYurtFace — A Yurt Below the Seven Bulls, Kyrgyzstan</title>
+<meta name="description" content="A hand-built yurt in Jeti-Öguz, Issyk-Kul, Kyrgyzstan — free breakfast, wood stove, and a view of the Seven Bulls rock straight from your bed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rust:#b5502e;
+    --rust-dark:#8f3d22;
+    --cream:#faf5ec;
+    --cream-warm:#f2e9d8;
+    --wood:#3c2c20;
+    --wood-soft:#5a4633;
+    --green:#4a5d3a;
+    --ink:#2b2019;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Jost', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    font-weight:300;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    color:var(--wood);
+    line-height:1.15;
+  }
+  a{color:inherit;}
+  img{display:block; width:100%; height:100%; object-fit:cover;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  section{padding:88px 0;}
+
+  /* NAV */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    background:linear-gradient(to bottom, rgba(20,14,10,0.55), transparent);
+    transition:background .3s ease;
+  }
+  nav.scrolled{background:var(--cream); box-shadow:0 2px 14px rgba(0,0,0,0.08);}
+  nav.scrolled .brand, nav.scrolled a.navlink{color:var(--wood);}
+  .brand{font-family:'Fraunces', serif; font-size:1.25rem; color:#fff; letter-spacing:.02em;}
+  .navlinks{display:flex; gap:28px; align-items:center;}
+  a.navlink{color:#fff; text-decoration:none; font-size:.92rem; letter-spacing:.03em;}
+  .btn{
+    display:inline-block;
+    padding:13px 28px;
+    background:var(--rust);
+    color:#fff !important;
+    text-decoration:none;
+    border-radius:2px;
+    font-size:.92rem;
+    letter-spacing:.04em;
+    transition:background .2s ease, transform .2s ease;
+    border:none;
+    cursor:pointer;
+  }
+  .btn:hover{background:var(--rust-dark); transform:translateY(-1px);}
+  .btn-outline{
+    background:transparent; border:1.5px solid currentColor;
+  }
+  .btn-outline:hover{background:rgba(255,255,255,0.12);}
+
+  /* HERO */
+  .hero{
+    position:relative; height:100vh; min-height:640px;
+    display:flex; align-items:flex-end;
+    color:#fff;
+  }
+  .hero img{position:absolute; inset:0; z-index:0;}
+  .hero::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(15,10,7,0.82) 0%, rgba(15,10,7,0.25) 55%, rgba(15,10,7,0.35) 100%);
+  }
+  .hero-content{position:relative; z-index:1; padding-bottom:80px; width:100%;}
+  .kicker{
+    text-transform:uppercase; letter-spacing:.18em; font-size:.78rem;
+    color:var(--cream-warm); margin-bottom:18px; font-weight:500;
+  }
+  .hero h1{font-size:clamp(2.6rem, 6vw, 4.6rem); color:#fff; max-width:820px;}
+  .hero p.lead{font-size:1.15rem; max-width:560px; margin-top:20px; color:#f0e8db; font-weight:300;}
+  .hero-cta{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+
+  /* INTRO */
+  .intro{max-width:760px; margin:0 auto; text-align:center;}
+  .intro .kicker{color:var(--rust); text-align:center;}
+  .intro h2{font-size:clamp(1.9rem, 3.5vw, 2.6rem); margin-bottom:26px;}
+  .intro p{font-size:1.08rem; color:var(--wood-soft); margin-bottom:18px;}
+
+  /* GALLERY */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-auto-rows:180px;
+    gap:10px;
+    margin-top:56px;
+  }
+  .gallery-grid figure{overflow:hidden; border-radius:3px; position:relative;}
+  .gallery-grid img{transition:transform .5s ease;}
+  .gallery-grid figure:hover img{transform:scale(1.06);}
+  .g1{grid-column:1/4; grid-row:1/3;}
+  .g2{grid-column:4/6; grid-row:1/2;}
+  .g3{grid-column:6/7; grid-row:1/3;}
+  .g4{grid-column:4/6; grid-row:2/3;}
+  .g5{grid-column:1/3; grid-row:3/4;}
+  .g6{grid-column:3/7; grid-row:3/4;}
+  @media (max-width:800px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:180px;}
+    .g1,.g2,.g3,.g4,.g5,.g6{grid-column:auto; grid-row:auto;}
+    .g1{grid-column:1/3;}
+  }
+
+  /* SPLIT SECTIONS */
+  .band{background:var(--cream-warm);}
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  @media (max-width:820px){.split{grid-template-columns:1fr;}}
+  .split img{border-radius:3px;}
+  .split .kicker{color:var(--rust);}
+  .split h2{font-size:clamp(1.8rem,3vw,2.3rem); margin-bottom:20px;}
+  .split p{color:var(--wood-soft); margin-bottom:14px;}
+  .split.reverse .col-text{order:2;}
+  .split.reverse .col-img{order:1;}
+  @media (max-width:820px){.split.reverse .col-text, .split.reverse .col-img{order:initial;}}
+
+  /* AMENITIES */
+  .amenities-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:28px 40px; margin-top:50px;
+  }
+  @media (max-width:700px){.amenities-grid{grid-template-columns:1fr 1fr;}}
+  .amenity{display:flex; gap:14px; align-items:flex-start;}
+  .amenity .ic{
+    flex-shrink:0; width:38px; height:38px; border-radius:50%;
+    background:var(--cream-warm); display:flex; align-items:center; justify-content:center;
+    color:var(--rust); font-size:1.1rem;
+  }
+  .amenity h4{font-family:'Fraunces', serif; font-weight:500; font-size:1.02rem; color:var(--wood); margin-bottom:4px;}
+  .amenity p{font-size:.92rem; color:var(--wood-soft); margin:0;}
+
+  /* REVIEWS */
+  .reviews-section{background:var(--wood); color:var(--cream);}
+  .reviews-section .kicker{color:#d9b48f;}
+  .reviews-section h2{color:#fff;}
+  .reviews-intro{max-width:640px;}
+  .reviews-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:52px;
+  }
+  @media (max-width:900px){.reviews-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:620px){.reviews-grid{grid-template-columns:1fr;}}
+  .review-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:4px;
+    padding:26px 24px;
+    display:flex; flex-direction:column;
+  }
+  .review-card .quote-mark{font-family:'Fraunces', serif; font-size:2.4rem; color:#d9b48f; line-height:1; margin-bottom:6px;}
+  .review-card p.txt{font-size:.96rem; color:#efe6d8; flex-grow:1; margin-bottom:18px;}
+  .review-meta{display:flex; justify-content:space-between; align-items:baseline; border-top:1px solid rgba(255,255,255,0.12); padding-top:14px;}
+  .review-meta .name{font-family:'Fraunces', serif; color:#fff; font-size:.98rem;}
+  .review-meta .when{font-size:.8rem; color:#c9b79e;}
+
+  /* LOCATION / HOW TO GET THERE */
+  .steps{counter-reset:step; margin-top:40px; display:grid; gap:26px;}
+  .step{display:flex; gap:20px; align-items:flex-start;}
+  .step .num{
+    counter-increment:step;
+    font-family:'Fraunces', serif; font-size:1.3rem; color:var(--rust);
+    border:1.5px solid var(--rust); width:42px; height:42px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .step .num::before{content:counter(step);}
+  .step h4{font-family:'Fraunces', serif; font-weight:500; color:var(--wood); margin-bottom:4px;}
+  .step p{color:var(--wood-soft); font-size:.95rem; margin:0;}
+  .note-box{
+    margin-top:36px; background:var(--cream-warm); border-left:3px solid var(--rust);
+    padding:20px 24px; font-size:.92rem; color:var(--wood-soft); border-radius:2px;
+  }
+
+  /* HOST */
+  .host{display:flex; gap:36px; align-items:center; flex-wrap:wrap;}
+  .host-badge{
+    width:96px; height:96px; border-radius:50%; background:var(--rust);
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:2.2rem; flex-shrink:0;
+  }
+  .host h3{margin-bottom:6px;}
+  .host .tag{color:var(--rust); font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:10px;}
+  .host p{color:var(--wood-soft); max-width:560px;}
+
+  /* FOOTER CTA */
+  .cta-final{
+    background:var(--rust); color:#fff; text-align:center;
+  }
+  .cta-final h2{color:#fff; font-size:clamp(1.9rem,4vw,2.8rem); margin-bottom:18px;}
+  .cta-final p{max-width:520px; margin:0 auto 32px; color:#fbe6d9; font-size:1.05rem;}
+  .cta-final .btn{background:#fff; color:var(--rust) !important;}
+  .cta-final .btn:hover{background:var(--cream-warm);}
+
+  footer{
+    background:var(--ink); color:#c9b79e; text-align:center; padding:40px 24px; font-size:.85rem;
+  }
+  footer a{color:#e8d3ba; text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<nav id="siteNav">
+  <div class="brand">Yurty McYurtFace</div>
+  <div class="navlinks">
+    <a class="navlink" href="#story">The Yurt</a>
+    <a class="navlink" href="#gallery">Photos</a>
+    <a class="navlink" href="#reviews">Reviews</a>
+    <a class="navlink" href="#getting-there">Getting There</a>
+    <a class="btn" href="https://www.airbnb.com/rooms/54114738" target="_blank" rel="noopener">Check Availability</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <img src="images/yurt-07.jpeg" alt="View of the Seven Bulls rock formation near the yurt in Jeti-Öguz, Kyrgyzstan">
+  <div class="hero-content wrap">
+    <div class="kicker">Jeti-Öguz · Issyk-Kul Region · Kyrgyzstan</div>
+    <h1>A yurt below the<br>Seven Bulls</h1>
+    <p class="lead">A cozy, hand-built yurt in the forest, with a stream outside and the famous Seven Bulls rock in full view from your bed. Free breakfast included.</p>
+    <div class="hero-cta">
+      <a class="btn" href="https://www.airbnb.com/rooms/54114738" target="_blank" rel="noopener">Check Availability on Airbnb</a>
+      <a class="btn btn-outline" href="#story">Learn More ↓</a>
+    </div>
+  </div>
+</header>
+
+<section id="story">
+  <div class="wrap intro">
+    <div class="kicker">The Space</div>
+    <h2>Escape to a hidden paradise</h2>
+    <p>You're staying in a cozy yurt in the forest. A stream runs just outside, creating a peaceful atmosphere after a day of trekking nearby. From the yurt, wake up to a beautiful view of the famous Seven Bulls Rock.</p>
+    <p>We provide yoga mats for meditation, binoculars, and a guitar for music 🎶 — and breakfast is on us, every morning.</p>
+    <p>Whether you're here to unwind or explore, every moment is an invitation to experience the beauty of the wilderness. Stretch out by the stream, borrow the binoculars for an up-close look at nature's wonders, or feel inspired to play a tune while basking in the scenery.</p>
+  </div>
+</section>
+
+<section id="gallery" class="band">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--rust); text-align:center;">Photos</div>
+    <h2 style="text-align:center; font-size:clamp(1.9rem,3.5vw,2.6rem);">Inside &amp; around the yurt</h2>
+    <div class="gallery-grid">
+      <figure class="g1"><img src="images/yurt-02.jpeg" alt="Interior of the yurt with wood stove, bed and dining table"></figure>
+      <figure class="g2"><img src="images/yurt-01.jpeg" alt="Outdoor deck workspace with a winter mountain view"></figure>
+      <figure class="g3"><img src="images/yurt-06.jpeg" alt="Horseback riding through the snowy canyon near the yurt"></figure>
+      <figure class="g4"><img src="images/yurt-03.jpeg" alt="View of the Seven Bulls rock framed by the yurt door"></figure>
+      <figure class="g5"><img src="images/yurt-05.jpeg" alt="Relaxing on the deck facing the mountains"></figure>
+      <figure class="g6"><img src="images/yurt-07.jpeg" alt="Wide view of the Seven Bulls rock formation"></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div class="col-img"><img src="images/yurt-02.jpeg" alt="Yurt interior with wood-burning stove and cozy bed"></div>
+    <div class="col-text">
+      <div class="kicker">What's Inside</div>
+      <h2>Rustic, but never rough</h2>
+      <p>Mountain view · Wifi · Dedicated workspace · Free parking on premises</p>
+      <p>Private patio, fully-fenced private backyard, and an indoor wood-burning fireplace to keep you warm through Kyrgyz winters.</p>
+      <p>Yoga mats, binoculars, and a guitar are all here waiting — plus a free home-cooked breakfast served at the guest house every morning.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split reverse">
+    <div class="col-text">
+      <div class="kicker">What To Do</div>
+      <h2>Trek, ride, or simply do nothing</h2>
+      <p>For the adventurous, embark on a roughly 4-hour trek to a stunning waterfall tucked away in the forest.</p>
+      <p>Craving more? Hop on a horseback ride and experience the landscape like never before — lush meadows, rugged red cliffs, and endless views of the Seven Bulls.</p>
+      <p>Or stay close: stretch out on the yoga mats by the stream, meditate with the mountains in front of you, and let the sound of sheep and cow bells be the only noise all day.</p>
+    </div>
+    <div class="col-img"><img src="images/yurt-06.jpeg" alt="Horseback riding along the snowy canyon trail"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker" style="color:var(--rust);">Amenities</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.3rem);">Everything you need, out here in the wild</h2>
+    <div class="amenities-grid">
+      <div class="amenity"><div class="ic">⛰</div><div><h4>Mountain view</h4><p>The Seven Bulls, right outside your door.</p></div></div>
+      <div class="amenity"><div class="ic">📶</div><div><h4>Wifi</h4><p>Pocket wifi provided, good enough for calls.</p></div></div>
+      <div class="amenity"><div class="ic">🔥</div><div><h4>Wood-burning fireplace</h4><p>Indoor stove to keep the yurt warm.</p></div></div>
+      <div class="amenity"><div class="ic">🍳</div><div><h4>Free breakfast</h4><p>Served every morning at the guest house.</p></div></div>
+      <div class="amenity"><div class="ic">🚗</div><div><h4>Free parking</h4><p>On premises, with a stretch of dirt track up.</p></div></div>
+      <div class="amenity"><div class="ic">🧘</div><div><h4>Yoga mats &amp; binoculars</h4><p>For meditation and watching for wildlife.</p></div></div>
+      <div class="amenity"><div class="ic">🎸</div><div><h4>Guitar</h4><p>Left for any guest who wants to play a tune.</p></div></div>
+      <div class="amenity"><div class="ic">🛁</div><div><h4>Private bath</h4><p>Attached bathroom, hot shower included.</p></div></div>
+      <div class="amenity"><div class="ic">🧳</div><div><h4>Luggage dropoff</h4><p>Allowed if you arrive early or leave late.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reviews-section">
+  <div class="wrap">
+    <div class="kicker">Reviews</div>
+    <div class="reviews-intro">
+      <h2 style="font-size:clamp(1.9rem,3.5vw,2.6rem);">What guests say</h2>
+      <p style="color:#d9c7b0; margin-top:14px;">Real words from real guests who've stayed at the yurt.</p>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">Very special place, stunning view and a yurt with everything you need, extremely cosy. It was hard to leave that place, as it was so beautiful. Can recommend it to anyone who wants a comfortable stay in nature.</p>
+        <div class="review-meta"><span class="name">Etienne</span><span class="when">May 2026</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">One of the nicest places I've ever stayed. So peaceful — this yurt sits next to the Seven Bulls rocks. The yurt has everything you need: a small kitchen, toilet with shower, loads of lighting options. Breakfast is included and served at the Guest House. Everyone is so friendly.</p>
+        <div class="review-meta"><span class="name">Robert</span><span class="when">April 2026</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">Literally the best place I've ever stayed. Wish we could have stayed there for months. So peaceful. So beautiful. Hosts were lovely and helpful and the yurt was just fantastic. Beautiful views of the 7 bulls with just the sound of the rushing river and sheep and cow bells. I have to go back!</p>
+        <div class="review-meta"><span class="name">Lily</span><span class="when">April 2026</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">What a beautiful and unique experience it was. It's indescribable in words; it felt so magical. We were very kindly received and helped with everything — friendly and so honest. I will definitely come back, and with more people.</p>
+        <div class="review-meta"><span class="name">Ilknur</span><span class="when">July 2026</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">We had a super cozy stay in this beautiful yurt and the communication with Reafil was really great. I loved all the details, the indirect light and the fireplace, and immediately felt at peace listening to the sounds around the yurt.</p>
+        <div class="review-meta"><span class="name">Hannah</span><span class="when">July 2025</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">The yurt itself was immaculate — clean, cozy, and thoughtfully equipped with everything we could possibly need. But what truly set this experience apart was Reafil's extraordinary kindness. It's rare to encounter such genuine hospitality. We would return in a heartbeat.</p>
+        <div class="review-meta"><span class="name">Krzysztof</span><span class="when">May 2025</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">An unforgettable experience that will stay with us forever. A beautiful yurt in the mountains, all alone in the forest — pure nature and country life. We were taken care of excellently and lovingly. I proposed to my girlfriend there under millions of stars, and was fantastically supported. By the way — she said yes!</p>
+        <div class="review-meta"><span class="name">Dmytro</span><span class="when">July 2025</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">We spent 10 days in the yurt in winter and experienced an unforgettable time. The location is indescribably beautiful, lonely and peaceful. The view of the mountain is a dream. Simply the perfect place to forget everyday life, find peace and relaxation.</p>
+        <div class="review-meta"><span class="name">Jana</span><span class="when">January 2025</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">Excellent yurt! We stayed in a few yurts in Kyrgyzstan, but this is a really luxurious one. When it rained the track from the hotel was tricky, but the hosts made sure we got there safe.</p>
+        <div class="review-meta"><span class="name">Rudolf</span><span class="when">June 2024</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">Perfect yurt in a beautiful area! The photos don't do it justice — the yurt is really well equipped, with lovely design and all the amenities you'd need (and not expect in a yurt!): electricity, a kitchen, a super strong heater and a hair dryer. We loved the bathroom, one of the best hot showers we had in Kyrgyzstan.</p>
+        <div class="review-meta"><span class="name">Christina</span><span class="when">October 2022</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">We enjoyed our stay a lot in the Yurt. Especially during winter times it's magical to be surrounded by snow. Our host prepared us the most authentically Kirgistan breakfast and told us a lot about the culture and traditions. The location of the yurt is perfect to relax and enjoy pure nature.</p>
+        <div class="review-meta"><span class="name">Georg</span><span class="when">January 2024</span></div>
+      </div>
+
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <p class="txt">The Yurt is absolutely beautiful and surrounded by stunning nature. The location is secluded and private. The track up is only suitable for experienced drivers in winter, so come a little early — but despite the challenging start, we really enjoyed our stay in the surrounding beauty.</p>
+        <div class="review-meta"><span class="name">Florian</span><span class="when">August 2025</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="getting-there">
+  <div class="wrap split">
+    <div class="col-text">
+      <div class="kicker">Getting There</div>
+      <h2>How check-in works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num"></div>
+          <div><h4>Meet at Emir Guest House</h4><p>Jeti-Öguz — you'll meet our co-host, Cholpon, there first.</p></div>
+        </div>
+        <div class="step">
+          <div class="num"></div>
+          <div><h4>Drive 800m up to the yurt</h4><p>Cholpon will take you the rest of the way and hand you the key.</p></div>
+        </div>
+        <div class="step">
+          <div class="num"></div>
+          <div><h4>Check in 2:00–7:00 PM</h4><p>Check-out is before 12:00 PM. Let us know if you need flexibility.</p></div>
+        </div>
+      </div>
+      <div class="note-box">📝 In winter, please arrive a little early — the last stretch of road up to the yurt can be slippery. A 4x4 helps, but it's manageable with care.</div>
+    </div>
+    <div class="col-img"><img src="images/yurt-03.jpeg" alt="Doorway view of the yurt looking out at the Seven Bulls rock"></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap host">
+    <div class="host-badge">R</div>
+    <div>
+      <div class="tag">Superhost · 5 Years Hosting</div>
+      <h3>Hosted by Reafil</h3>
+      <p>Hi, I'm Reafil, from the Philippines. Safe travels to us all! I read and respond to every message myself, and try to make each stay feel personal — from the breakfast on your table to the guitar in the corner.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Ready for the mountains?</h2>
+    <p>Check live availability, dates, and pricing directly on Airbnb.</p>
+    <a class="btn" href="https://www.airbnb.com/rooms/54114738" target="_blank" rel="noopener">Check Availability on Airbnb</a>
+  </div>
+</section>
+
+<footer>
+  <p>Yurty McYurtFace · Jeti-Öguz, Issyk-Kul Region, Kyrgyzstan</p>
+  <p style="margin-top:8px;">Book directly on <a href="https://www.airbnb.com/rooms/54114738" target="_blank" rel="noopener">Airbnb</a></p>
+</footer>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 60){ nav.classList.add('scrolled'); }
+    else { nav.classList.remove('scrolled'); }
+  });
+</script>
+
+</body>
+</html>

@@ -40,8 +40,15 @@
   section{padding:88px 0;}
 
   /* NAV */
+  #siteHeader{position:fixed; top:0; left:0; right:0; z-index:50;}
+  .ribbon{
+    background:var(--wood); color:var(--cream);
+    text-align:center; font-size:.8rem; letter-spacing:.015em;
+    padding:8px 16px; line-height:1.5;
+  }
+  .ribbon a{color:#fff; font-weight:600; text-decoration:underline; text-underline-offset:2px; white-space:nowrap;}
+  .ribbon .sep{opacity:.45; margin:0 7px;}
   nav{
-    position:fixed; top:0; left:0; right:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between;
     padding:20px 32px;
     background:linear-gradient(to bottom, rgba(20,14,10,0.55), transparent);
@@ -224,6 +231,13 @@
 </head>
 <body>
 
+<div id="siteHeader">
+<div class="ribbon">
+  Crypto accepted <span class="sep">·</span> Book direct, no Airbnb fees <span class="sep">·</span>
+  <a href="https://wa.me/639687512330" target="_blank" rel="noopener">WhatsApp</a>
+  <span class="sep">·</span>
+  <a href="https://t.me/+639687512330" target="_blank" rel="noopener">Telegram</a>
+</div>
 <nav id="siteNav">
   <a class="brand" href="#top">Yurty McYurtFace</a>
   <div class="navlinks">
@@ -235,6 +249,7 @@
     <a class="btn" href="https://www.airbnb.com/rooms/54114738" target="_blank" rel="noopener">Check Availability</a>
   </div>
 </nav>
+</div>
 
 <header class="hero" id="top">
   <img src="images/yurt-07.jpeg" alt="View of the Seven Bulls rock formation near the yurt in Jeti-Öguz, Kyrgyzstan">

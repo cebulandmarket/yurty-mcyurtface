@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://cebulandmarket.github.io/yurty-mcyurtface/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://cebulandmarket.github.io/yurty-mcyurtface/images/yurt-07.jpeg</image:loc>
+      <image:title>Yurty McYurtFace — the Seven Bulls rock, Jeti-Ogyz, Kyrgyzstan</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cebulandmarket.github.io/yurty-mcyurtface/images/yurt-02.jpeg</image:loc>
+      <image:title>Inside Yurty McYurtFace — wood stove, bed and dining table</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cebulandmarket.github.io/yurty-mcyurtface/images/yurt-08.jpeg</image:loc>
+      <image:title>Wood-burning stove inside Yurty McYurtFace</image:title>
+    </image:image>
+  </url>
+</urlset>

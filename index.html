@@ -131,6 +131,33 @@
   .brand{font-family:'Fraunces', serif; font-size:1.25rem; color:#fff; letter-spacing:.02em; text-decoration:none;}
   .navlinks{display:flex; gap:28px; align-items:center;}
   a.navlink{color:#fff; text-decoration:none; font-size:.92rem; letter-spacing:.03em;}
+  .navToggle{display:none; flex-direction:column; justify-content:center; gap:5px; width:34px; height:34px; background:none; border:none; cursor:pointer; padding:0; flex-shrink:0;}
+  .navToggle span{display:block; width:100%; height:2px; background:#fff; transition:transform .25s ease, opacity .25s ease;}
+  nav.scrolled .navToggle span{background:var(--wood);}
+  .navToggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .navToggle.open span:nth-child(2){opacity:0;}
+  .navToggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  @media (max-width:900px){
+    nav{position:relative; padding:18px 20px; flex-wrap:nowrap;}
+    .brand{font-size:1.08rem;}
+    .navToggle{display:flex;}
+    .navlinks{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:stretch; gap:0;
+      background:var(--cream);
+      max-height:0; overflow:hidden;
+      transition:max-height .3s ease;
+      box-shadow:0 12px 24px rgba(0,0,0,0.14);
+    }
+    .navlinks.open{max-height:420px;}
+    .navlinks a.navlink{color:var(--wood); padding:15px 24px; border-bottom:1px solid rgba(60,44,32,0.08); font-size:1rem;}
+    .navlinks a.btn{margin:16px 24px; text-align:center;}
+  }
+  @media (max-width:560px){
+    .ribbon{font-size:.72rem; padding:8px 12px;}
+    .ribbon .sep:nth-of-type(1){display:none;}
+  }
   .btn{
     display:inline-block;
     padding:13px 28px;
@@ -317,7 +344,10 @@
 </div>
 <nav id="siteNav">
   <a class="brand" href="#top">Yurty McYurtFace</a>
-  <div class="navlinks">
+  <button class="navToggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="navlinks" id="navLinks">
     <a class="navlink" href="#our-story">Our Story</a>
     <a class="navlink" href="#story">The Yurt</a>
     <a class="navlink" href="#gallery">Photos</a>
@@ -565,6 +595,19 @@
     if(window.scrollY > 60){ nav.classList.add('scrolled'); }
     else { nav.classList.remove('scrolled'); }
   });
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
 </script>
 
 </body>
